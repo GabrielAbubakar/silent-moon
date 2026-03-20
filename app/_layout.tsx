@@ -31,10 +31,13 @@ export default function RootLayout() {
   // Return root stack if fonts loaded
   return (
     <>
-      <Stack initialRouteName="welcome" screenOptions={{ headerShown: false }}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
         <Stack.Screen name="welcome" />
         <Stack.Screen name="login" />
         <Stack.Screen name="register" />
+        <Stack.Screen name="topics" />
+        <Stack.Screen name="reminders" />
         <Stack.Screen name="(tabs)" />
       </Stack>
       <StatusBar style="dark" />

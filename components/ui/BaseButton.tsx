@@ -1,14 +1,14 @@
+import { Colors } from "@/constants";
 import React from "react";
 import {
-  TouchableOpacity,
-  Text,
+  ActivityIndicator,
   StyleSheet,
+  Text,
+  TextStyle,
+  TouchableOpacity,
   TouchableOpacityProps,
   ViewStyle,
-  TextStyle,
-  ActivityIndicator,
 } from "react-native";
-import { Colors } from "../constants/Colors";
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "text";
 type ButtonSize = "small" | "medium" | "large";
@@ -20,6 +20,9 @@ interface BaseButtonProps extends TouchableOpacityProps {
   isLoading?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
+  textStyle?: import("react-native").StyleProp<
+    import("react-native").TextStyle
+  >;
 }
 
 export const BaseButton: React.FC<BaseButtonProps> = ({
@@ -30,6 +33,7 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
   leftIcon,
   rightIcon,
   style,
+  textStyle: customTextStyle,
   disabled,
   ...props
 }) => {
@@ -42,7 +46,7 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
         };
       case "secondary":
         return {
-          backgroundColor: Colors.light.textSecondary,
+          backgroundColor: "#EBEAEC",
           borderWidth: 0,
         };
       case "outline":
@@ -66,9 +70,12 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
   const getVariantTextStyle = (): TextStyle => {
     switch (variant) {
       case "primary":
-      case "secondary":
         return {
           color: "#FFFFFF",
+        };
+      case "secondary":
+        return {
+          color: Colors.light.textPrimary,
         };
       case "outline":
       case "text":
@@ -91,7 +98,7 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
         };
       case "medium":
         return {
-          paddingVertical: 16,
+          paddingVertical: 18,
           paddingHorizontal: 32,
         };
       case "large":
@@ -140,13 +147,14 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
     styles.text,
     getVariantTextStyle(),
     getSizeTextStyle(),
+    customTextStyle,
   ];
 
   return (
     <TouchableOpacity
       style={containerStyle}
       disabled={disabled || isLoading}
-      activeOpacity={0.8}
+      activeOpacity={0.3}
       {...props}
     >
       {isLoading ? (
@@ -168,7 +176,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 8, // Space between icon and text
+    gap: 30, // Space between icon and text
   },
   text: {
     fontWeight: "600",
