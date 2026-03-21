@@ -2,7 +2,7 @@ import BackgroundGraphic from "@/assets/images/background-graphic.svg";
 import Facebook from "@/assets/images/facebook.svg";
 import Google from "@/assets/images/google.svg";
 import { ScreenLayout } from "@/components/ScreenLayout";
-import { BaseButton, BaseText, ControlledInput } from "@/components/ui";
+import { BaseButton, BaseText, ControlledInput, ControlledPasswordInput } from "@/components/ui";
 import { Colors } from "@/constants";
 import { SignInFormData, signInSchema } from "@/lib/schemas";
 import { Ionicons } from "@expo/vector-icons";
@@ -13,6 +13,7 @@ import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function Login() {
   const { control, handleSubmit } = useForm<SignInFormData>({
+    mode: "onChange",
     resolver: zodResolver(signInSchema),
     defaultValues: {
       email: "",
@@ -95,11 +96,10 @@ export default function Login() {
               autoCapitalize="none"
             />
 
-            <ControlledInput
+            <ControlledPasswordInput
               control={control}
               name="password"
               placeholder="Password"
-              secureTextEntry
             />
 
             <BaseButton

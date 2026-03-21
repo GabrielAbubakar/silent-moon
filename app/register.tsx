@@ -2,7 +2,7 @@ import BackgroundGraphic from "@/assets/images/background-graphic.svg";
 import Facebook from "@/assets/images/facebook.svg";
 import Google from "@/assets/images/google.svg";
 import { ScreenLayout } from "@/components/ScreenLayout";
-import { BaseButton, BaseText, ControlledInput } from "@/components/ui";
+import { BaseButton, BaseText, ControlledInput, ControlledPasswordInput, ControlledCheckbox } from "@/components/ui";
 import { Colors } from "@/constants";
 import { SignUpFormData, signUpSchema } from "@/lib/schemas";
 import { Ionicons } from "@expo/vector-icons";
@@ -13,11 +13,13 @@ import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function Register() {
   const { control, handleSubmit } = useForm<SignUpFormData>({
+    mode: "onChange",
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       username: "",
       email: "",
       password: "",
+      privacyPolicy: false,
     },
   });
 
@@ -111,36 +113,25 @@ export default function Register() {
               keyboardType="email-address"
               autoCapitalize="none"
             />
-            <ControlledInput
+            <ControlledPasswordInput
               control={control}
               name="password"
               placeholder="Password"
-              // secureTextEntry
-              rightIcon={
-                <Ionicons
-                  name="eye-off-outline"
-                  size={24}
-                  color={Colors.light.textSecondary}
-                />
-              }
             />
 
             {/* PRIVACY POLICY CHECKBOX */}
-            <View style={styles.checkboxContainer}>
+            <ControlledCheckbox
+              control={control}
+              name="privacyPolicy"
+              containerStyle={styles.checkboxContainer}
+            >
               <BaseText preset="subtitle" style={styles.checkboxText}>
                 i have read the{" "}
                 <BaseText preset="subtitle" style={{ color: "#7583CA" }}>
                   Privacy Policy
                 </BaseText>
               </BaseText>
-              <TouchableOpacity hitSlop={10}>
-                <Ionicons
-                  name="square-outline"
-                  size={24}
-                  color={Colors.light.textSecondary}
-                />
-              </TouchableOpacity>
-            </View>
+            </ControlledCheckbox>
 
             <BaseButton
               onPress={handleSubmit(onSubmit)}
@@ -198,9 +189,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   checkboxContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
     paddingHorizontal: 10,
     marginBottom: 20,
     marginTop: 5,

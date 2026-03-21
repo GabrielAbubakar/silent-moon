@@ -1,5 +1,4 @@
-import LogoDark from "@/assets/images/logo-dark.svg";
-import { BaseButton, BaseText } from "@/components";
+import { BaseButton, BaseText, LogoGroup } from "@/components";
 import { Meditate } from "@/components/icons";
 import { Colors } from "@/constants";
 import { router, useLocalSearchParams } from "expo-router";
@@ -12,20 +11,19 @@ export default function Welcome() {
   return (
     <SafeAreaView style={styles.container}>
       {/* <View style={styles.container}> */}
-      <View style={styles.logoContainer}>
-        <BaseText variant="bold" style={styles.headerText}>
-          Silent
-        </BaseText>
-        <LogoDark />
-        <BaseText variant="bold" style={styles.headerText}>
-          Moon
-        </BaseText>
-      </View>
+      <LogoGroup variant="dark" />
 
       <View style={styles.textContainer}>
-        <BaseText variant="bold" style={styles.title}>
-          Hi {name || "User"}, Welcome to Silent Moon
-        </BaseText>
+        <View>
+          <BaseText variant="bold" style={styles.title}>
+            Hi {name || "User"}, Welcome
+          </BaseText>
+          <BaseText
+            style={{ fontSize: 28, color: "#fff", textAlign: "center" }}
+          >
+            to Silent Moon
+          </BaseText>
+        </View>
 
         <BaseText style={styles.subtitle}>
           Explore the app, Find some peace of mind to prepare for meditation.

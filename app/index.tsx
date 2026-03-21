@@ -1,8 +1,7 @@
 import BackgroundGraphic from "@/assets/images/bg-pink.svg";
 import WhatWeDo from "@/assets/images/what-we-do.svg";
-import { LogoLight } from "@/components/icons";
 import { ScreenLayout } from "@/components/ScreenLayout";
-import { BaseButton, BaseText } from "@/components/ui";
+import { BaseButton, BaseText, LogoGroup } from "@/components/ui";
 import { Colors } from "@/constants";
 import { router } from "expo-router";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
@@ -19,15 +18,7 @@ export default function Index() {
           />
         </View>
 
-        <View style={styles.logoContainer}>
-          <BaseText variant="bold" style={{ letterSpacing: 2 }}>
-            Silent
-          </BaseText>
-          <LogoLight />
-          <BaseText variant="bold" style={{ letterSpacing: 2 }}>
-            Moon
-          </BaseText>
-        </View>
+        <LogoGroup variant="light" />
 
         <View
           style={{

@@ -7,6 +7,7 @@ export const signUpSchema = z.object({
     .string()
     .min(8, "Password must be at least 8 characters")
     .regex(/[A-Z]/, "Password must contain at least one uppercase letter"),
+  privacyPolicy: z.boolean().refine((val) => val === true, "You must accept the privacy policy"),
 });
 
 export type SignUpFormData = z.infer<typeof signUpSchema>;
