@@ -1,7 +1,12 @@
 import { Colors, fontFamily, fontSize, Typography } from "@/constants";
 import { StyleSheet, Text, TextProps } from "react-native";
 
-export type BaseTextVariant = "bold" | "medium" | "default" | "regular";
+export type BaseTextVariant =
+  | "bold"
+  | "medium"
+  | "default"
+  | "regular"
+  | "light";
 export type BaseTextSize = keyof typeof fontSize;
 export type BaseTextPreset = keyof typeof Typography;
 

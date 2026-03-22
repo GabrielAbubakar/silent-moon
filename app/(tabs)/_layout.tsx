@@ -66,15 +66,16 @@ export default function TabsLayout() {
                       ? Colors.light.primary
                       : "transparent",
                     borderRadius: 15,
-                    padding: 15,
+                    paddingVertical: 17,
+                    paddingHorizontal: 15,
                     justifyContent: "center",
                     alignItems: "center",
                   }}
                 >
                   <Icon
                     color={focused ? "white" : color}
-                    width={size}
-                    height={size}
+                    width={21}
+                    height={21}
                   />
                 </View>
               );
