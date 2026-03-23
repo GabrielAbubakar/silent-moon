@@ -43,9 +43,9 @@ export default function TabsLayout() {
         headerShown: false,
         tabBarActiveTintColor: Colors.light.primary,
         tabBarStyle: {
-          height: 100,
+          height: 110,
           paddingBottom: 40,
-          paddingTop: 10,
+          paddingTop: 15,
           paddingHorizontal: 15,
         },
         animation: "shift",
@@ -57,6 +57,9 @@ export default function TabsLayout() {
           name={tab.name}
           options={{
             title: tab.title,
+            ...(tab.name === "music"
+              ? { tabBarStyle: { display: "none" } }
+              : {}),
             tabBarIcon: ({ color, size, focused }) => {
               const Icon = tab.icon;
               return (
@@ -80,7 +83,7 @@ export default function TabsLayout() {
                 </View>
               );
             },
-            tabBarLabel: ({ focused, color }: any) => {
+            tabBarLabel: ({ color }: any) => {
               return (
                 <BaseText
                   style={{

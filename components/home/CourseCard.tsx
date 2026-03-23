@@ -1,7 +1,7 @@
-import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { BaseText } from "@/components/ui";
 import { Colors } from "@/constants";
 import { router } from "expo-router";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { SvgProps } from "react-native-svg";
 
 export interface Course {
@@ -20,9 +20,12 @@ interface CourseCardProps {
 export function CourseCard({ course }: CourseCardProps) {
   function handleNavigate(category: string) {
     if (category === "COURSE") {
-      // router.push("/course");
+      router.push("/course-details");
     } else if (category === "MUSIC") {
-      router.push("/music");
+      router.push({
+        pathname: "/music",
+        params: { title: course.title },
+      });
     }
   }
 

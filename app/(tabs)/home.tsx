@@ -1,6 +1,6 @@
 import Play from "@/assets/icons/play.svg";
 import BGImage from "@/assets/images/daily-thought-bg.svg";
-import { BaseText, LogoGroup, CourseCard, RecommendedCard } from "@/components";
+import { BaseText, CourseCard, LogoGroup, RecommendedCard } from "@/components";
 import { ScreenLayout } from "@/components/ScreenLayout";
 import { Colors, COURSES, RECOMMENDED } from "@/constants";
 import { router } from "expo-router";
@@ -49,7 +49,14 @@ export default function Home() {
               </BaseText>
             </View>
           </View>
-          <TouchableOpacity onPress={() => router.push("/music")}>
+          <TouchableOpacity
+            onPress={() =>
+              router.push({
+                pathname: "/music",
+                params: { title: "Daily Thought" },
+              })
+            }
+          >
             <Play />
           </TouchableOpacity>
           <BGImage style={styles.dailyThoughtBg} />
@@ -109,5 +116,4 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: -1,
   },
-
 });

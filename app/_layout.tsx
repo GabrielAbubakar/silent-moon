@@ -33,12 +33,13 @@ export default function RootLayout() {
     <>
       <Stack initialRouteName="(tabs)" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
-        <Stack.Screen name="welcome" />
-        <Stack.Screen name="login" />
-        <Stack.Screen name="register" />
-        <Stack.Screen name="topics" />
-        <Stack.Screen name="reminders" />
+        <Stack.Screen name="(onboarding)" />
+        <Stack.Screen name="(auth)" />
         <Stack.Screen name="(tabs)" />
+        <Stack.Screen
+          name="course-details"
+          options={{ animation: "fade_from_bottom" }}
+        />
       </Stack>
       <StatusBar style="dark" />
     </>
