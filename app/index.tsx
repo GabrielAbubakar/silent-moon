@@ -1,7 +1,7 @@
 import BackgroundGraphic from "@/assets/images/bg-pink.svg";
 import WhatWeDo from "@/assets/images/what-we-do.svg";
-import { ScreenLayout } from "@/components/ScreenLayout";
 import { BaseButton, BaseText, LogoGroup } from "@/components/ui";
+import { ScreenLayout } from "@/components/ui/ScreenLayout";
 import { Colors } from "@/constants";
 import { router } from "expo-router";
 import { StyleSheet, TouchableOpacity, View } from "react-native";

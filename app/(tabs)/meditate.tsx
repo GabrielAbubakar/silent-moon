@@ -9,73 +9,10 @@ import BeachImage from "@/assets/images/beach.svg";
 import DailyThoughtBg from "@/assets/images/daily-calm.svg";
 import KenyaImage from "@/assets/images/kenya.svg";
 import MorningImage from "@/assets/images/morning.svg";
-import { ScreenLayout } from "@/components/ScreenLayout";
-import { BaseText } from "@/components/ui";
+import { BaseText, MeditateTopicCard, ScreenLayout } from "@/components";
 import { Colors } from "@/constants";
-import { BlurView } from "expo-blur";
-import { FC, useState } from "react";
+import { useState } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
-import { SvgProps } from "react-native-svg";
-
-function MeditateTopicCard({
-  title,
-  image: Image,
-  backgroundColor,
-  textColor,
-  height = 150,
-}: {
-  title: string;
-  image: FC<SvgProps>;
-  backgroundColor: string;
-  textColor: string;
-  height?: number;
-}) {
-  return (
-    <TouchableOpacity
-      activeOpacity={0.6}
-      style={{
-        backgroundColor,
-        borderRadius: 20,
-        overflow: "hidden",
-        height,
-        position: "relative",
-      }}
-    >
-      <View style={StyleSheet.absoluteFillObject}>
-        <Image
-          width="100%"
-          height="100%"
-          preserveAspectRatio="xMidYMid slice"
-        />
-      </View>
-      {title.trim().length > 0 && (
-        <BlurView
-          intensity={30}
-          tint="dark"
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            overflow: "hidden",
-            paddingHorizontal: 12,
-            paddingVertical: 6,
-            width: "100%",
-          }}
-        >
-          <BaseText
-            variant="bold"
-            style={{
-              color: textColor,
-              fontSize: 16,
-            }}
-          >
-            {title}
-          </BaseText>
-        </BlurView>
-      )}
-    </TouchableOpacity>
-  );
-}
 
 export default function Meditate() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -127,7 +64,7 @@ export default function Meditate() {
   ];
 
   return (
-    <ScreenLayout>
+    <ScreenLayout setPadding={false}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
@@ -249,7 +186,6 @@ const styles = StyleSheet.create({
   },
   categoriesScroll: {
     marginBottom: 20,
-    marginHorizontal: -16,
   },
   categoriesContainer: {
     paddingHorizontal: 16,
@@ -285,6 +221,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FCDCB9",
     borderRadius: 15,
     padding: 20,
+    marginHorizontal: 16,
     marginBottom: 30,
     position: "relative",
     overflow: "hidden",
@@ -316,6 +253,7 @@ const styles = StyleSheet.create({
   masonryGrid: {
     flexDirection: "row",
     gap: 16,
+    paddingHorizontal: 16,
   },
   masonryCol: {
     flex: 1,

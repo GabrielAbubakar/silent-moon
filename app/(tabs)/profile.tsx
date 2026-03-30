@@ -1,4 +1,4 @@
-import { ScreenLayout } from "@/components/ScreenLayout";
+import { ScreenLayout } from "@/components/ui/ScreenLayout";
 import { StyleSheet, Text } from "react-native";
 
 export default function Profile() {

@@ -1,9 +1,10 @@
 import { BaseButton, BaseText } from "@/components";
-import { ScreenLayout } from "@/components/ScreenLayout";
+import { ScreenLayout } from "@/components/ui/ScreenLayout";
 import { Colors } from "@/constants";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { router } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const days = [
   { label: "SU", value: "sun" },
@@ -17,6 +18,8 @@ const days = [
 
 export default function Reminders() {
   const [selectedDays, setSelectedDays] = useState<string[]>([]);
+  const [time, setTime] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
+  const [showPicker, setShowPicker] = useState(Platform.OS === "ios");
 
   const handleDayPress = (day: string) => {
     if (selectedDays.includes(day)) {
@@ -36,7 +39,38 @@ export default function Reminders() {
             Any time you can choose but We recommend first thing in th morning.
           </BaseText>
 
-          <View></View>
+          <View style={styles.timePickerContainer}>
+            {Platform.OS === "android" && (
+              <TouchableOpacity
+                style={styles.timeButton}
+                onPress={() => setShowPicker(true)}
+              >
+                <BaseText style={styles.timeButtonText}>
+                  {time.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </BaseText>
+              </TouchableOpacity>
+            )}
+            {showPicker && (
+              <DateTimePicker
+                value={time}
+                themeVariant="light"
+                mode="time"
+                display="spinner"
+                is24Hour={false}
+                onChange={(event, selectedTime) => {
+                  if (Platform.OS === "android") {
+                    setShowPicker(false);
+                  }
+                  if (selectedTime) {
+                    setTime(selectedTime);
+                  }
+                }}
+              />
+            )}
+          </View>
         </View>
 
         <View style={{ marginBottom: 40 }}>
@@ -98,6 +132,22 @@ const styles = StyleSheet.create({
     color: "#16171D",
     marginBottom: 16,
     width: "90%",
+  },
+  timePickerContainer: {
+    backgroundColor: "#F2F3F7",
+    borderRadius: 20,
+    overflow: "hidden",
+    marginVertical: 10,
+    padding: Platform.OS === "ios" ? 0 : 10,
+  },
+  timeButton: {
+    paddingVertical: 15,
+    alignItems: "center",
+  },
+  timeButtonText: {
+    fontSize: 24,
+    color: "#16171D",
+    fontWeight: "bold",
   },
   daysContainer: {
     flexDirection: "row",

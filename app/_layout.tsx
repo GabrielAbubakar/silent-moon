@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
+import { AppProvider } from "../context/AppContext";
 
 // 1. Prevent the splash screen from hiding automatically
 SplashScreen.preventAutoHideAsync();
@@ -30,18 +31,24 @@ export default function RootLayout() {
 
   // Return root stack if fonts loaded
   return (
-    <>
+    <AppProvider>
       <Stack initialRouteName="(tabs)" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
         <Stack.Screen name="(onboarding)" />
         <Stack.Screen name="(auth)" />
         <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="welcome-sleep" />
         <Stack.Screen
           name="course-details"
           options={{ animation: "fade_from_bottom" }}
         />
+        <Stack.Screen
+          name="sleep-details"
+          options={{ animation: "fade_from_bottom" }}
+        />
+        <Stack.Screen name="sleep-music" options={{ animation: "fade" }} />
       </Stack>
       <StatusBar style="dark" />
-    </>
+    </AppProvider>
   );
 }

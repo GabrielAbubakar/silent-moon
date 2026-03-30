@@ -1,76 +1,87 @@
 import Play from "@/assets/icons/play.svg";
 import BGImage from "@/assets/images/daily-thought-bg.svg";
-import { BaseText, CourseCard, LogoGroup, RecommendedCard } from "@/components";
-import { ScreenLayout } from "@/components/ScreenLayout";
+import {
+  BaseText,
+  CourseCard,
+  LogoGroup,
+  RecommendedCard,
+  ScreenLayout,
+} from "@/components";
 import { Colors, COURSES, RECOMMENDED } from "@/constants";
 import { router } from "expo-router";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function Home() {
   return (
-    <ScreenLayout>
+    <ScreenLayout setPadding={false}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ flexGrow: 1, paddingBottom: 40 }}
+        contentContainerStyle={{ flexGrow: 1 }}
       >
         <LogoGroup variant="light" />
 
-        <BaseText preset="header" style={{ marginTop: 50 }}>
-          Good Morning, Gabriel
-        </BaseText>
-        <BaseText
-          variant="light"
-          style={{
-            color: Colors.light.textSecondary,
-            fontSize: 20,
-            marginBottom: 20,
-          }}
-        >
-          We wish you have a good day
-        </BaseText>
-
-        <View style={styles.courseRow}>
-          {COURSES.map((course) => (
-            <CourseCard key={course.title} course={course} />
-          ))}
-        </View>
-
-        <View style={styles.dailyThoughtCard}>
-          <View>
-            <BaseText variant="bold" size="lg" style={{ color: "#fff" }}>
-              Daily Thought
-            </BaseText>
-            <View style={styles.dailyThoughtInfo}>
-              <BaseText style={{ color: "#EBEAEC", fontSize: 12 }}>
-                MEDITATION
-              </BaseText>
-              <BaseText style={{ color: "#EBEAEC", fontSize: 12 }}>
-                3-10 MIN
-              </BaseText>
-            </View>
-          </View>
-          <TouchableOpacity
-            onPress={() =>
-              router.push({
-                pathname: "/music",
-                params: { title: "Daily Thought" },
-              })
-            }
+        <View style={{ paddingHorizontal: 16 }}>
+          <BaseText preset="header" style={{ marginTop: 50 }}>
+            Good Morning, Gabriel
+          </BaseText>
+          <BaseText
+            variant="light"
+            style={{
+              color: Colors.light.textSecondary,
+              fontSize: 20,
+              marginBottom: 20,
+            }}
           >
-            <Play />
-          </TouchableOpacity>
-          <BGImage style={styles.dailyThoughtBg} />
+            We wish you have a good day
+          </BaseText>
+
+          <View style={styles.courseRow}>
+            {COURSES.map((course) => (
+              <CourseCard key={course.title} course={course} />
+            ))}
+          </View>
+
+          <View style={styles.dailyThoughtCard}>
+            <View>
+              <BaseText variant="bold" size="lg" style={{ color: "#fff" }}>
+                Daily Thought
+              </BaseText>
+              <View style={styles.dailyThoughtInfo}>
+                <BaseText style={{ color: "#EBEAEC", fontSize: 12 }}>
+                  MEDITATION
+                </BaseText>
+                <BaseText style={{ color: "#EBEAEC", fontSize: 12 }}>
+                  3-10 MIN
+                </BaseText>
+              </View>
+            </View>
+            <TouchableOpacity
+              onPress={() =>
+                router.push({
+                  pathname: "/music",
+                  params: { title: "Daily Thought" },
+                })
+              }
+            >
+              <Play />
+            </TouchableOpacity>
+            <BGImage style={styles.dailyThoughtBg} />
+          </View>
         </View>
 
         <View>
-          <BaseText variant="bold" size="xxl" style={{ marginBottom: 20 }}>
+          <BaseText
+            variant="bold"
+            size="xxl"
+            style={{ marginBottom: 20, paddingHorizontal: 16 }}
+          >
             Recommended for you
           </BaseText>
 
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ gap: 20 }}
+            contentContainerStyle={{ gap: 20, paddingHorizontal: 16 }}
           >
             {RECOMMENDED.map((item) => (
               <RecommendedCard key={item.id} item={item} />

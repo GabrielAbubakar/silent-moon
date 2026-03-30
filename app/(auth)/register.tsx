@@ -1,8 +1,14 @@
 import BackgroundGraphic from "@/assets/images/background-graphic.svg";
 import Facebook from "@/assets/images/facebook.svg";
 import Google from "@/assets/images/google.svg";
-import { ScreenLayout } from "@/components/ScreenLayout";
-import { BaseButton, BaseText, ControlledInput, ControlledPasswordInput, ControlledCheckbox } from "@/components/ui";
+import {
+  BaseButton,
+  BaseText,
+  ControlledCheckbox,
+  ControlledInput,
+  ControlledPasswordInput,
+} from "@/components/ui";
+import { ScreenLayout } from "@/components/ui/ScreenLayout";
 import { Colors } from "@/constants";
 import { SignUpFormData, signUpSchema } from "@/lib/schemas";
 import { Ionicons } from "@expo/vector-icons";

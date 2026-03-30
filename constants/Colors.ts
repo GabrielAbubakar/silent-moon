@@ -6,9 +6,9 @@ export const Colors = {
     textSecondary: "#A1A4B2",
   },
   dark: {
-    background: "#000",
-    primary: "#03174D",
-    textPrimary: "#fff",
+    background: "#03174D",
+    primary: "#8E97FD",
+    textPrimary: "#E6E7F2",
     textSecondary: "#EBEAEC",
   },
 };

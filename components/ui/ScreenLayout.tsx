@@ -2,9 +2,24 @@ import { Colors } from "@/constants";
 import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export function ScreenLayout({ children }: { children: React.ReactNode }) {
+export function ScreenLayout({
+  children,
+  setPadding = true,
+  backgroundColor = Colors.light.background,
+}: {
+  children: React.ReactNode;
+  setPadding?: boolean;
+  backgroundColor?: string;
+}) {
   return (
-    <SafeAreaView style={styles.container} edges={["top"]}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        setPadding && { paddingHorizontal: 16, paddingTop: 16 },
+        { backgroundColor },
+      ]}
+      edges={["top"]}
+    >
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -19,7 +34,5 @@ export function ScreenLayout({ children }: { children: React.ReactNode }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.light.background,
-    padding: 16,
   },
 });

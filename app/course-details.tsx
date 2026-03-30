@@ -12,8 +12,8 @@ import { router } from "expo-router";
 import { useState } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import {
-    SafeAreaView,
-    useSafeAreaInsets,
+  SafeAreaView,
+  useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
 export default function CourseDetails() {
@@ -118,7 +118,15 @@ export default function CourseDetails() {
           <View style={styles.trackList}>
             {tracks.map((track) => (
               <View key={track.id} style={styles.trackItem}>
-                <TouchableOpacity style={styles.playButtonWrapper}>
+                <TouchableOpacity
+                  style={styles.playButtonWrapper}
+                  onPress={() =>
+                    router.push({
+                      pathname: "/music",
+                      params: { title: track.title },
+                    })
+                  }
+                >
                   {track.id === 1 ? (
                     <PlayActiveIcon width={40} height={40} />
                   ) : (
