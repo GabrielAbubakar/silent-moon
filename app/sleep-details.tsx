@@ -11,19 +11,20 @@ import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function SleepDetails() {
   const insets = useSafeAreaInsets();
   const { title } = useLocalSearchParams();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar style="auto" />
-      <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
+      <ScrollView 
+        showsVerticalScrollIndicator={false} 
+        bounces={false}
+        contentContainerStyle={{ paddingBottom: Math.max(insets.bottom, 20) }}
+      >
         {/* Header Image Section */}
         <View style={styles.headerImageContainer}>
           <MorningImage
@@ -127,7 +128,7 @@ export default function SleepDetails() {
           }
         />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 

@@ -27,7 +27,7 @@ export default function CourseDetails() {
   ];
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
         {/* Header Image Section */}
         <View style={styles.headerImageContainer}>
