@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   playerSection: {
-    marginBottom: 40,
+    marginBottom: 90,
   },
   controlsRow: {
     flexDirection: "row",
@@ -205,6 +205,7 @@ const styles = StyleSheet.create({
     borderRadius: 1,
     position: "relative",
     justifyContent: "center",
+    marginHorizontal: 10,
   },
   scrubberFill: {
     position: "absolute",

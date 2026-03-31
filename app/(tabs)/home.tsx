@@ -8,10 +8,13 @@ import {
   ScreenLayout,
 } from "@/components";
 import { Colors, COURSES, RECOMMENDED } from "@/constants";
+import { useAppContext } from "@/context/AppContext";
 import { router } from "expo-router";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function Home() {
+  const { userName } = useAppContext();
+
   return (
     <ScreenLayout setPadding={false}>
       <ScrollView
@@ -22,7 +25,7 @@ export default function Home() {
 
         <View style={{ paddingHorizontal: 16 }}>
           <BaseText preset="header" style={{ marginTop: 50 }}>
-            Good Morning, Gabriel
+            Good Morning, {userName}
           </BaseText>
           <BaseText
             variant="light"

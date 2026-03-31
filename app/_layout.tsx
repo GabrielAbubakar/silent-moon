@@ -15,6 +15,7 @@ export default function RootLayout() {
     "HelveticaNeue-Roman": require("../assets/fonts/helvetica-neue-5/HelveticaNeueRoman.otf"),
     "HelveticaNeue-Bold": require("../assets/fonts/helvetica-neue-5/HelveticaNeueBold.otf"),
     "HelveticaNeue-BoldItalic": require("../assets/fonts/helvetica-neue-5/HelveticaNeueBoldItalic.otf"),
+    "Garamond-Bold": require("../assets/fonts/AGaramondPro-Bold.otf"),
   });
 
   // 3. Use an effect to hide the splash screen once fonts are ready (or if there's an error)

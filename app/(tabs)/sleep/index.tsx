@@ -10,15 +10,10 @@ import { SleepCard } from "@/components/sleep";
 import { ScreenLayout } from "@/components/ui/ScreenLayout";
 import { Colors, SLEEP_STORIES } from "@/constants";
 import { useAppContext } from "@/context/AppContext";
+import { Image } from "expo-image";
 import { Redirect, router } from "expo-router";
 import { useState } from "react";
-import {
-  ImageBackground,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function Sleep() {
   const { hasSeenSleepWelcome } = useAppContext();
@@ -89,20 +84,27 @@ export default function Sleep() {
         </ScrollView>
 
         <View style={styles.oceanMoon}>
-          <ImageBackground
-            source={OceanMoon}
-            resizeMode="cover"
-            style={styles.oceanMoonImage}
-            imageStyle={{ borderRadius: 25 }}
-          >
-            <BaseText variant="bold" style={styles.title}>
-              The Ocean Mood
+          <Image source={OceanMoon} style={styles.oceanMoonImage} />
+          <View style={styles.oceanMoonContent}>
+            <BaseText variant="bold" style={styles.oceanMoonTitle}>
+              The Ocean Moon
             </BaseText>
-            <BaseText variant="light" style={styles.description}>
+            <BaseText variant="light" style={styles.oceanMoonDescription}>
               Non-stop 8- hour mixes of our most popular sleep audio
             </BaseText>
-            <BaseButton variant="secondary" title="START" />
-          </ImageBackground>
+            <BaseButton
+              variant="secondary"
+              title="START"
+              style={{ alignSelf: "center" }}
+              size="small"
+              onPress={() =>
+                router.push({
+                  pathname: "/sleep-music",
+                  params: { title: "The Ocean Moon" },
+                })
+              }
+            />
+          </View>
         </View>
 
         <View
@@ -200,8 +202,27 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: "center",
     alignItems: "center",
-    overflow: "hidden",
-    backgroundColor: "red",
+    borderRadius: 20,
+  },
+  oceanMoonContent: {
+    position: "absolute",
+    bottom: 50,
+    left: 50,
+    right: 50,
+  },
+  oceanMoonTitle: {
+    fontSize: 36,
+    marginBottom: 10,
+    textAlign: "center",
+    fontFamily: "Garamond-Bold",
+    color: Colors.dark.textPrimary,
+  },
+  oceanMoonDescription: {
+    fontSize: 16,
+    marginBottom: 10,
+    lineHeight: 24,
+    textAlign: "center",
+    color: Colors.dark.textSecondary,
   },
   sleepStories: {
     paddingHorizontal: 16,
