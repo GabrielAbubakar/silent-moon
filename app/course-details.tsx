@@ -54,7 +54,7 @@ export default function CourseDetails() {
 
             <View style={styles.rightActions}>
               <TouchableOpacity style={styles.iconButton}>
-                <HeartIcon width={20} height={20} />
+                <HeartIcon width={20} height={20} color={"#FF84A2"} />
               </TouchableOpacity>
               <TouchableOpacity style={styles.iconButton}>
                 <DownloadIcon width={20} height={20} />

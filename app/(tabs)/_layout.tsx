@@ -6,11 +6,10 @@ import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
 
 export default function TabsLayout() {
-  const { hasSeenSleepWelcome } = useAppContext();
+  const { hasSeenSleepWelcome, userName } = useAppContext();
 
   return (
     <>
-      <StatusBar style="dark" />
       <Tabs
         screenOptions={{
           headerShown: false,
@@ -55,7 +54,7 @@ export default function TabsLayout() {
                       marginTop: 10, // Creates a solid gap between the icon block and text
                     }}
                   >
-                    {tab.title}
+                    {tab.name === "profile" ? userName : tab.title}
                   </BaseText>
                 );
               },
@@ -79,6 +78,7 @@ export default function TabsLayout() {
           />
         ))}
       </Tabs>
+      <StatusBar style="dark" />
     </>
   );
 }

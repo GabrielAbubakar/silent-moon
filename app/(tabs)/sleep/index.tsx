@@ -33,7 +33,7 @@ export default function Sleep() {
   }
 
   return (
-    <ScreenLayout setPadding={false}>
+    <ScreenLayout backgroundColor={Colors.dark.background} setPadding={false}>
       <ScrollView style={styles.container}>
         <BgImage style={styles.bgImage} />
         <View style={styles.header}>
@@ -118,13 +118,14 @@ export default function Sleep() {
           <BaseText variant="bold" style={styles.title}>
             Sleep Stories
           </BaseText>
-          <TouchableOpacity onPress={() => router.push("/sleep/sleep-music")}>
+          <TouchableOpacity onPress={() => router.push("/sleep/sleep-stories")}>
             <BaseText variant="regular" style={styles.description}>
               See all
             </BaseText>
           </TouchableOpacity>
         </View>
 
+        {/* TODO */}
         <View style={styles.sleepStories}>
           {SLEEP_STORIES.map((story, index) => (
             <SleepCard key={index} story={story} />
@@ -138,7 +139,6 @@ export default function Sleep() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.dark.background,
   },
   bgImage: {
     ...StyleSheet.absoluteFillObject,

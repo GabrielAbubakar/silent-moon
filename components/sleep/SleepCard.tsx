@@ -19,6 +19,7 @@ export function SleepCard({
     <TouchableOpacity
       key={story.title}
       style={[styles.container, { width }]}
+      activeOpacity={0.8}
       onPress={() =>
         router.push({
           pathname: "/sleep-details",

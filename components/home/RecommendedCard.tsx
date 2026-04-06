@@ -1,6 +1,6 @@
-import { View, StyleSheet } from "react-native";
 import { BaseText } from "@/components/ui";
 import { Colors } from "@/constants";
+import { StyleSheet, View } from "react-native";
 import { SvgProps } from "react-native-svg";
 
 export interface RecommendedItem {

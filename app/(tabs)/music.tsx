@@ -68,7 +68,7 @@ export default function Music() {
         <View style={styles.playerSection}>
           <View style={styles.controlsRow}>
             <TouchableOpacity style={styles.skipButton}>
-              <RewindIcon width={40} height={40} />
+              <RewindIcon width={40} height={40} color="#A0A3B1" />
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.playPauseButton}>
@@ -76,7 +76,7 @@ export default function Music() {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.skipButton}>
-              <ForwardIcon width={40} height={40} />
+              <ForwardIcon width={40} height={40} color="#A0A3B1" />
             </TouchableOpacity>
           </View>
 

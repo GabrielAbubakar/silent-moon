@@ -20,8 +20,8 @@ export default function SleepDetails() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <ScrollView 
-        showsVerticalScrollIndicator={false} 
+      <ScrollView
+        showsVerticalScrollIndicator={false}
         bounces={false}
         contentContainerStyle={{ paddingBottom: Math.max(insets.bottom, 20) }}
       >
@@ -62,7 +62,7 @@ export default function SleepDetails() {
         {/* Course Info Section */}
         <View style={styles.contentContainer}>
           <BaseText variant="bold" style={styles.title}>
-            {title}
+            {title ?? "Sleep Music"}
           </BaseText>
           <View style={{ flexDirection: "row", gap: 5 }}>
             <BaseText style={styles.subtitle}>45 MIN</BaseText>

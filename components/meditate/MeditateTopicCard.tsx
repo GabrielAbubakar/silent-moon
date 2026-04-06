@@ -37,7 +37,7 @@ export function MeditateTopicCard({
       </View>
       {title.trim().length > 0 && (
         <BlurView
-          intensity={80}
+          intensity={30}
           tint="dark"
           style={{
             position: "absolute",
@@ -45,7 +45,7 @@ export function MeditateTopicCard({
             left: 0,
             overflow: "hidden",
             paddingHorizontal: 12,
-            paddingVertical: 6,
+            paddingVertical: 10,
             width: "100%",
           }}
         >
