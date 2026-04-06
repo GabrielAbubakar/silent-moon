@@ -9,8 +9,10 @@ import { BaseText, CustomTouchableOpacity } from "@/components/ui";
 import { Colors } from "@/constants";
 import { AntDesign } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { useState, useRef } from "react";
+import { ScrollView, StyleSheet, View, useWindowDimensions, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
+
+
 import {
   SafeAreaView,
   useSafeAreaInsets,
@@ -18,13 +20,61 @@ import {
 
 export default function CourseDetails() {
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
   const [activeTab, setActiveTab] = useState("MALE VOICE");
+  const scrollRef = useRef<ScrollView>(null);
 
   const tracks = [
     { id: 1, title: "Focus Attention", duration: "10 MIN" },
     { id: 2, title: "Body Scan", duration: "5 MIN" },
     { id: 3, title: "Making Happiness", duration: "3 MIN" },
   ];
+
+  const contentWidth = width - 40; // Accounting for 20px padding on both sides
+
+  const handleTabPress = (tab: string, index: number) => {
+    setActiveTab(tab);
+    scrollRef.current?.scrollTo({ x: index * contentWidth, animated: true });
+  };
+
+  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const offsetX = event.nativeEvent.contentOffset.x;
+    const index = Math.round(offsetX / contentWidth);
+    const tabs = ["MALE VOICE", "FEMALE VOICE"];
+    if (tabs[index] && activeTab !== tabs[index]) {
+      setActiveTab(tabs[index]);
+    }
+  };
+
+  const renderTrackList = (prefix: string) => (
+    <View style={[styles.trackList, { width: contentWidth }]}>
+      {tracks.map((track) => (
+        <View key={`${prefix}-${track.id}`} style={styles.trackItem}>
+          <CustomTouchableOpacity
+            style={styles.playButtonWrapper}
+            onPress={() =>
+              router.push({
+                pathname: "/music",
+                params: { title: track.title },
+              })
+            }
+          >
+            {track.id === 1 ? (
+              <PlayActiveIcon width={40} height={40} />
+            ) : (
+              <PlayInactiveIcon width={40} height={40} />
+            )}
+          </CustomTouchableOpacity>
+          <View style={styles.trackInfo}>
+            <BaseText style={styles.trackTitle}>{track.title}</BaseText>
+            <BaseText style={styles.trackDuration}>{track.duration}</BaseText>
+          </View>
+        </View>
+      ))}
+    </View>
+  );
+
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -92,11 +142,11 @@ export default function CourseDetails() {
             Pick a Narrator
           </BaseText>
           <View style={styles.tabsContainer}>
-            {["MALE VOICE", "FEMALE VOICE"].map((tab) => (
+            {["MALE VOICE", "FEMALE VOICE"].map((tab, index) => (
               <CustomTouchableOpacity
                 key={tab}
                 style={styles.tab}
-                onPress={() => setActiveTab(tab)}
+                onPress={() => handleTabPress(tab, index)}
               >
                 <BaseText
                   variant="bold"
@@ -114,34 +164,18 @@ export default function CourseDetails() {
             ))}
           </View>
 
-          {/* Track List */}
-          <View style={styles.trackList}>
-            {tracks.map((track) => (
-              <View key={track.id} style={styles.trackItem}>
-                <CustomTouchableOpacity
-                  style={styles.playButtonWrapper}
-                  onPress={() =>
-                    router.push({
-                      pathname: "/music",
-                      params: { title: track.title },
-                    })
-                  }
-                >
-                  {track.id === 1 ? (
-                    <PlayActiveIcon width={40} height={40} />
-                  ) : (
-                    <PlayInactiveIcon width={40} height={40} />
-                  )}
-                </CustomTouchableOpacity>
-                <View style={styles.trackInfo}>
-                  <BaseText style={styles.trackTitle}>{track.title}</BaseText>
-                  <BaseText style={styles.trackDuration}>
-                    {track.duration}
-                  </BaseText>
-                </View>
-              </View>
-            ))}
-          </View>
+          <ScrollView
+            ref={scrollRef}
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            onMomentumScrollEnd={handleScroll}
+            scrollEventThrottle={16}
+          >
+            {renderTrackList("male")}
+            {renderTrackList("female")}
+
+          </ScrollView>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -245,14 +279,15 @@ const styles = StyleSheet.create({
   tab: {
     flex: 1,
     paddingVertical: 15,
-    // alignItems: "center",
+    alignItems: "center",
   },
   activeTabIndicator: {
     position: "absolute",
     bottom: -1,
-    width: "33%",
-    height: 2,
+    width: "100%",
+    height: 3,
     backgroundColor: "#8E97FD",
+    borderRadius: 1.5,
   },
   tabText: {
     fontSize: 14,
