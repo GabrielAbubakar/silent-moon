@@ -1,8 +1,8 @@
 import { Colors } from "@/constants";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { TouchableOpacity } from "react-native";
 import { BaseInput } from "./BaseInput";
+import { CustomTouchableOpacity } from "./CustomTouchableOpacity";
 
 export const PasswordInput: React.FC<React.ComponentProps<typeof BaseInput>> = (
   props,
@@ -14,7 +14,7 @@ export const PasswordInput: React.FC<React.ComponentProps<typeof BaseInput>> = (
       {...props}
       // secureTextEntry={isSecure}
       rightIcon={
-        <TouchableOpacity
+        <CustomTouchableOpacity
           onPress={() => setIsSecure(!isSecure)}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
@@ -23,7 +23,7 @@ export const PasswordInput: React.FC<React.ComponentProps<typeof BaseInput>> = (
             size={24}
             color={Colors.light.textSecondary}
           />
-        </TouchableOpacity>
+        </CustomTouchableOpacity>
       }
     />
   );

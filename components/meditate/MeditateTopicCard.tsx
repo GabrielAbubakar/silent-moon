@@ -1,8 +1,9 @@
 import { BlurView } from "expo-blur";
 import { FC } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SvgProps } from "react-native-svg";
-import { BaseText } from "../ui";
+import { BaseText } from "../ui/BaseText";
+import { CustomTouchableOpacity } from "../ui/CustomTouchableOpacity";
 
 export function MeditateTopicCard({
   title,
@@ -18,7 +19,7 @@ export function MeditateTopicCard({
   height?: number;
 }) {
   return (
-    <TouchableOpacity
+    <CustomTouchableOpacity
       activeOpacity={0.6}
       style={{
         backgroundColor,
@@ -60,6 +61,6 @@ export function MeditateTopicCard({
           </BaseText>
         </BlurView>
       )}
-    </TouchableOpacity>
+    </CustomTouchableOpacity>
   );
 }

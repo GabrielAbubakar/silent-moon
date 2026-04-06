@@ -9,10 +9,10 @@ import BeachImage from "@/assets/images/beach.svg";
 import DailyThoughtBg from "@/assets/images/daily-calm.svg";
 import KenyaImage from "@/assets/images/kenya.svg";
 import MorningImage from "@/assets/images/morning.svg";
-import { BaseText, MeditateTopicCard, ScreenLayout } from "@/components";
+import { BaseText, MeditateTopicCard, ScreenLayout, CustomTouchableOpacity } from "@/components";
 import { Colors } from "@/constants";
 import { useState } from "react";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function Meditate() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -86,7 +86,7 @@ export default function Meditate() {
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
-              <TouchableOpacity
+              <CustomTouchableOpacity
                 key={cat.id}
                 style={styles.categoryWrap}
                 onPress={() => setActiveCategory(cat.id)}
@@ -108,7 +108,7 @@ export default function Meditate() {
                 >
                   {cat.label}
                 </BaseText>
-              </TouchableOpacity>
+              </CustomTouchableOpacity>
             );
           })}
         </ScrollView>
@@ -125,11 +125,11 @@ export default function Meditate() {
                 APR 30 • PAUSE PRACTICE
               </BaseText>
             </View>
-            <TouchableOpacity
+            <CustomTouchableOpacity
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
               <PlayDarkIcon width={40} height={40} />
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
           </View>
         </View>
 

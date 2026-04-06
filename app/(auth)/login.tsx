@@ -6,6 +6,7 @@ import {
   BaseText,
   ControlledInput,
   ControlledPasswordInput,
+  CustomTouchableOpacity,
 } from "@/components/ui";
 import { ScreenLayout } from "@/components/ui/ScreenLayout";
 import { Colors } from "@/constants";
@@ -14,7 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
 import { useForm } from "react-hook-form";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function Login() {
   const { control, handleSubmit } = useForm<SignInFormData>({
@@ -48,7 +49,7 @@ export default function Login() {
         <View style={styles.container}>
           {/* HEADER SECTION */}
           <View style={styles.headerContainer}>
-            <TouchableOpacity
+            <CustomTouchableOpacity
               style={styles.backButton}
               onPress={() => router.back()}
             >
@@ -57,7 +58,7 @@ export default function Login() {
                 size={24}
                 color={Colors.light.textPrimary}
               />
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
             <BaseText preset="header" style={styles.title}>
               Welcome Back!
             </BaseText>
@@ -113,11 +114,11 @@ export default function Login() {
               style={{ marginTop: 10, marginBottom: 20 }}
             />
 
-            <TouchableOpacity>
+            <CustomTouchableOpacity>
               <BaseText preset="subtitle" style={styles.forgotPassword}>
                 Forgot Password?
               </BaseText>
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
           </View>
           {/* </KeyboardAvoidingView> */}
 
@@ -130,7 +131,7 @@ export default function Login() {
             >
               ALREADY HAVE AN ACCOUNT?
             </BaseText>
-            <TouchableOpacity
+            <CustomTouchableOpacity
               hitSlop={1}
               onPress={() => router.push("/register")}
             >
@@ -140,7 +141,7 @@ export default function Login() {
               >
                 SIGN UP
               </BaseText>
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
           </View>
         </View>
       </ScrollView>

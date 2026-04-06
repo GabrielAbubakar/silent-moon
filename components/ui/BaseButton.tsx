@@ -5,15 +5,14 @@ import {
   StyleSheet,
   Text,
   TextStyle,
-  TouchableOpacity,
-  TouchableOpacityProps,
   ViewStyle,
 } from "react-native";
+import { CustomTouchableOpacity, CustomTouchableOpacityProps } from "./CustomTouchableOpacity";
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "text";
 type ButtonSize = "small" | "medium" | "large";
 
-interface BaseButtonProps extends TouchableOpacityProps {
+interface BaseButtonProps extends CustomTouchableOpacityProps {
   title: string;
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -151,7 +150,7 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
   ];
 
   return (
-    <TouchableOpacity
+    <CustomTouchableOpacity
       style={containerStyle}
       disabled={disabled || isLoading}
       activeOpacity={0.3}
@@ -166,7 +165,7 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
           {rightIcon}
         </>
       )}
-    </TouchableOpacity>
+    </CustomTouchableOpacity>
   );
 };
 

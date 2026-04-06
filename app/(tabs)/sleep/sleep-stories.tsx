@@ -1,11 +1,11 @@
-import { BaseText } from "@/components";
+import { BaseText, CustomTouchableOpacity } from "@/components";
 import { SleepCard } from "@/components/sleep";
 import { ScreenLayout } from "@/components/ui/ScreenLayout";
 import { Colors, SLEEP_STORIES } from "@/constants";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 
 export default function SleepMusic() {
   return (
@@ -13,12 +13,12 @@ export default function SleepMusic() {
       <StatusBar style="light" />
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity
+          <CustomTouchableOpacity
             onPress={() => router.back()}
             style={styles.backButton}
           >
             <AntDesign name="arrow-left" size={24} color="#3F414E" />
-          </TouchableOpacity>
+          </CustomTouchableOpacity>
           <BaseText variant="bold" style={styles.headerTitle}>
             Sleep Music
           </BaseText>

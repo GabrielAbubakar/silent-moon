@@ -5,12 +5,12 @@ import HeartIcon from "@/assets/icons/heart-icon.svg";
 import PlayActiveIcon from "@/assets/icons/play-active.svg";
 import PlayInactiveIcon from "@/assets/icons/play-inactive.svg";
 import MorningImage from "@/assets/images/sunrise.svg";
-import { BaseText } from "@/components/ui";
+import { BaseText, CustomTouchableOpacity } from "@/components/ui";
 import { Colors } from "@/constants";
 import { AntDesign } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useState } from "react";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
@@ -41,7 +41,7 @@ export default function CourseDetails() {
           <View
             style={[styles.headerActions, { top: Math.max(insets.top, 20) }]}
           >
-            <TouchableOpacity
+            <CustomTouchableOpacity
               style={styles.backButton}
               onPress={() => router.back()}
             >
@@ -50,15 +50,15 @@ export default function CourseDetails() {
                 size={24}
                 color={Colors.light.textPrimary}
               />
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
 
             <View style={styles.rightActions}>
-              <TouchableOpacity style={styles.iconButton}>
+              <CustomTouchableOpacity style={styles.iconButton}>
                 <HeartIcon width={20} height={20} color={"#FF84A2"} />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.iconButton}>
+              </CustomTouchableOpacity>
+              <CustomTouchableOpacity style={styles.iconButton}>
                 <DownloadIcon width={20} height={20} />
-              </TouchableOpacity>
+              </CustomTouchableOpacity>
             </View>
           </View>
         </View>
@@ -93,7 +93,7 @@ export default function CourseDetails() {
           </BaseText>
           <View style={styles.tabsContainer}>
             {["MALE VOICE", "FEMALE VOICE"].map((tab) => (
-              <TouchableOpacity
+              <CustomTouchableOpacity
                 key={tab}
                 style={styles.tab}
                 onPress={() => setActiveTab(tab)}
@@ -110,7 +110,7 @@ export default function CourseDetails() {
                 {activeTab === tab && (
                   <View style={styles.activeTabIndicator} />
                 )}
-              </TouchableOpacity>
+              </CustomTouchableOpacity>
             ))}
           </View>
 
@@ -118,7 +118,7 @@ export default function CourseDetails() {
           <View style={styles.trackList}>
             {tracks.map((track) => (
               <View key={track.id} style={styles.trackItem}>
-                <TouchableOpacity
+                <CustomTouchableOpacity
                   style={styles.playButtonWrapper}
                   onPress={() =>
                     router.push({
@@ -132,7 +132,7 @@ export default function CourseDetails() {
                   ) : (
                     <PlayInactiveIcon width={40} height={40} />
                   )}
-                </TouchableOpacity>
+                </CustomTouchableOpacity>
                 <View style={styles.trackInfo}>
                   <BaseText style={styles.trackTitle}>{track.title}</BaseText>
                   <BaseText style={styles.trackDuration}>

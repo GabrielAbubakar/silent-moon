@@ -6,11 +6,12 @@ import {
   LogoGroup,
   RecommendedCard,
   ScreenLayout,
+  CustomTouchableOpacity,
 } from "@/components";
 import { Colors, COURSES, RECOMMENDED } from "@/constants";
 import { useAppContext } from "@/context/AppContext";
 import { router } from "expo-router";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function Home() {
   const { userName } = useAppContext();
@@ -58,7 +59,7 @@ export default function Home() {
                 </BaseText>
               </View>
             </View>
-            <TouchableOpacity
+            <CustomTouchableOpacity
               onPress={() =>
                 router.push({
                   pathname: "/music",
@@ -67,7 +68,7 @@ export default function Home() {
               }
             >
               <Play />
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
             <BGImage style={styles.dailyThoughtBg} />
           </View>
         </View>

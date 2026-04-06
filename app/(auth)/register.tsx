@@ -7,6 +7,7 @@ import {
   ControlledCheckbox,
   ControlledInput,
   ControlledPasswordInput,
+  CustomTouchableOpacity,
 } from "@/components/ui";
 import { ScreenLayout } from "@/components/ui/ScreenLayout";
 import { Colors } from "@/constants";
@@ -15,7 +16,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
 import { useForm } from "react-hook-form";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function Register() {
   const { control, handleSubmit } = useForm<SignUpFormData>({
@@ -57,7 +58,7 @@ export default function Register() {
         <View style={styles.container}>
           {/* HEADER SECTION */}
           <View style={styles.headerContainer}>
-            <TouchableOpacity
+            <CustomTouchableOpacity
               style={styles.backButton}
               onPress={() => router.back()}
             >
@@ -66,7 +67,7 @@ export default function Register() {
                 size={24}
                 color={Colors.light.textPrimary}
               />
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
             <BaseText preset="header" style={styles.title}>
               Create your account
             </BaseText>

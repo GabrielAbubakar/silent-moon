@@ -5,11 +5,11 @@ import HeartIcon from "@/assets/icons/heart-icon.svg";
 import PauseIcon from "@/assets/icons/pause.svg";
 import RewindIcon from "@/assets/icons/rewind.svg";
 import BgImage from "@/assets/images/dark-music-bg.svg";
-import { BaseText } from "@/components/ui";
+import { BaseText, CustomTouchableOpacity } from "@/components/ui";
 import { Colors } from "@/constants";
 import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function SleepMusic() {
@@ -36,7 +36,7 @@ export default function SleepMusic() {
       >
         {/* Header Section */}
         <View style={styles.headerRow}>
-          <TouchableOpacity
+          <CustomTouchableOpacity
             style={styles.closeButton}
             onPress={() => router.back()}
           >
@@ -45,14 +45,14 @@ export default function SleepMusic() {
               height={16}
               color={Colors.light.textPrimary}
             />
-          </TouchableOpacity>
+          </CustomTouchableOpacity>
           <View style={styles.rightActions}>
-            <TouchableOpacity style={styles.iconButton}>
+            <CustomTouchableOpacity style={styles.iconButton}>
               <HeartIcon width={22} height={22} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconButton}>
+            </CustomTouchableOpacity>
+            <CustomTouchableOpacity style={styles.iconButton}>
               <DownloadIcon width={22} height={22} color="#fff" />
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
           </View>
         </View>
 
@@ -71,27 +71,27 @@ export default function SleepMusic() {
         {/* Player Controls */}
         <View style={styles.playerSection}>
           <View style={styles.controlsRow}>
-            <TouchableOpacity>
+            <CustomTouchableOpacity>
               <RewindIcon
                 width={40}
                 height={40}
                 color={Colors.dark.textPrimary}
               />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.playPauseButton}>
+            </CustomTouchableOpacity>
+            <CustomTouchableOpacity style={styles.playPauseButton}>
               <PauseIcon
                 width={100}
                 height={100}
                 color={Colors.dark.textPrimary}
               />
-            </TouchableOpacity>
-            <TouchableOpacity>
+            </CustomTouchableOpacity>
+            <CustomTouchableOpacity>
               <ForwardIcon
                 width={40}
                 height={40}
                 color={Colors.dark.textPrimary}
               />
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
           </View>
 
           {/* Scrubber Placeholder */}

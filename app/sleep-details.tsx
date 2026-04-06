@@ -3,14 +3,14 @@ import HeadphonesIcon from "@/assets/icons/headphones.svg";
 import HeartFill from "@/assets/icons/heart-fill.svg";
 import HeartIcon from "@/assets/icons/heart-icon.svg";
 import MorningImage from "@/assets/images/sleep-detail.svg";
-import { SleepCard } from "@/components";
+import { SleepCard, CustomTouchableOpacity } from "@/components";
 import { BaseButton, BaseText } from "@/components/ui";
 import { Colors, SLEEP_STORIES } from "@/constants";
 import { AntDesign } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function SleepDetails() {
@@ -37,7 +37,7 @@ export default function SleepDetails() {
           <View
             style={[styles.headerActions, { top: Math.max(insets.top, 20) }]}
           >
-            <TouchableOpacity
+            <CustomTouchableOpacity
               style={styles.backButton}
               onPress={() => router.back()}
             >
@@ -46,15 +46,15 @@ export default function SleepDetails() {
                 size={24}
                 color={Colors.light.textPrimary}
               />
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
 
             <View style={styles.rightActions}>
-              <TouchableOpacity style={styles.iconButton}>
+              <CustomTouchableOpacity style={styles.iconButton}>
                 <HeartIcon width={20} height={20} />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.iconButton}>
+              </CustomTouchableOpacity>
+              <CustomTouchableOpacity style={styles.iconButton}>
                 <DownloadIcon width={20} height={20} />
-              </TouchableOpacity>
+              </CustomTouchableOpacity>
             </View>
           </View>
         </View>

@@ -1,12 +1,8 @@
 import { Colors } from "@/constants";
 import { router } from "expo-router";
-import {
-  DimensionValue,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { BaseText } from "../ui";
+import { DimensionValue, StyleSheet, View } from "react-native";
+import { BaseText } from "../ui/BaseText";
+import { CustomTouchableOpacity } from "../ui/CustomTouchableOpacity";
 
 export function SleepCard({
   story,
@@ -16,7 +12,7 @@ export function SleepCard({
   width?: DimensionValue;
 }) {
   return (
-    <TouchableOpacity
+    <CustomTouchableOpacity
       key={story.title}
       style={[styles.container, { width }]}
       activeOpacity={0.8}
@@ -42,7 +38,7 @@ export function SleepCard({
           {story.category}
         </BaseText>
       </View>
-    </TouchableOpacity>
+    </CustomTouchableOpacity>
   );
 }
 

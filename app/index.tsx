@@ -1,10 +1,15 @@
 import BackgroundGraphic from "@/assets/images/bg-pink.svg";
 import WhatWeDo from "@/assets/images/what-we-do.svg";
-import { BaseButton, BaseText, LogoGroup } from "@/components/ui";
+import {
+  BaseButton,
+  BaseText,
+  LogoGroup,
+  CustomTouchableOpacity,
+} from "@/components/ui";
 import { ScreenLayout } from "@/components/ui/ScreenLayout";
 import { Colors } from "@/constants";
 import { router } from "expo-router";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function Index() {
   return (
@@ -62,7 +67,7 @@ export default function Index() {
             >
               ALREADY HAVE AN ACCOUNT?
             </BaseText>
-            <TouchableOpacity hitSlop={1} onPress={() => router.push("/login")}>
+            <CustomTouchableOpacity hitSlop={1} onPress={() => router.push("/login")}>
               <BaseText
                 size="sm"
                 style={{
@@ -71,7 +76,7 @@ export default function Index() {
               >
                 SIGN IN
               </BaseText>
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
           </View>
         </View>
       </View>

@@ -1,9 +1,9 @@
-import { BaseButton, BaseText, CustomTimePicker } from "@/components";
+import { BaseButton, BaseText, CustomTimePicker, CustomTouchableOpacity } from "@/components";
 import { ScreenLayout } from "@/components/ui/ScreenLayout";
 import { Colors } from "@/constants";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 
 const days = [
   { label: "SU", value: "sun" },
@@ -53,7 +53,7 @@ export default function Reminders() {
 
           <View style={styles.daysContainer}>
             {days.map((day) => (
-              <TouchableOpacity
+              <CustomTouchableOpacity
                 key={day.value}
                 style={[
                   styles.day,
@@ -69,7 +69,7 @@ export default function Reminders() {
                 >
                   {day.label}
                 </BaseText>
-              </TouchableOpacity>
+              </CustomTouchableOpacity>
             ))}
           </View>
         </View>

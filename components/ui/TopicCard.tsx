@@ -1,8 +1,8 @@
 import { router } from "expo-router";
 import { FC } from "react";
-import { TouchableOpacity } from "react-native";
 import { SvgProps } from "react-native-svg";
 import { BaseText } from "./BaseText";
+import { CustomTouchableOpacity } from "./CustomTouchableOpacity";
 
 export function TopicCard({
   title,
@@ -20,7 +20,7 @@ export function TopicCard({
   height?: number;
 }) {
   return (
-    <TouchableOpacity
+    <CustomTouchableOpacity
       activeOpacity={0.6}
       onPress={() => router.push("/reminders")}
       style={{
@@ -44,6 +44,6 @@ export function TopicCard({
       >
         {title}
       </BaseText>
-    </TouchableOpacity>
+    </CustomTouchableOpacity>
   );
 }

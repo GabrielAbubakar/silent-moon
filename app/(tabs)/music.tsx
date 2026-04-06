@@ -8,9 +8,9 @@ import BgLeftBottom from "@/assets/images/music-left-bottom.svg";
 import BgLeftTop from "@/assets/images/music-left-top.svg";
 import BgRightBottom from "@/assets/images/music-right-bottom.svg";
 import BgRightTop from "@/assets/images/music-right-top.svg";
-import { BaseText } from "@/components/ui";
+import { BaseText, CustomTouchableOpacity } from "@/components/ui";
 import { router, useLocalSearchParams } from "expo-router";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Music() {
@@ -39,20 +39,20 @@ export default function Music() {
       >
         {/* Header Actions */}
         <View style={styles.headerRow}>
-          <TouchableOpacity
+          <CustomTouchableOpacity
             style={styles.closeButton}
             onPress={() => router.back()}
           >
             <CancelIcon width={16} height={16} />
-          </TouchableOpacity>
+          </CustomTouchableOpacity>
 
           <View style={styles.rightActions}>
-            <TouchableOpacity style={styles.iconButton}>
+            <CustomTouchableOpacity style={styles.iconButton}>
               <HeartIcon width={24} height={24} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconButton}>
+            </CustomTouchableOpacity>
+            <CustomTouchableOpacity style={styles.iconButton}>
               <DownloadIcon width={24} height={24} color="#fff" />
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
           </View>
         </View>
 
@@ -67,17 +67,17 @@ export default function Music() {
         {/* Player Controls */}
         <View style={styles.playerSection}>
           <View style={styles.controlsRow}>
-            <TouchableOpacity style={styles.skipButton}>
+            <CustomTouchableOpacity style={styles.skipButton}>
               <RewindIcon width={40} height={40} color="#A0A3B1" />
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
 
-            <TouchableOpacity style={styles.playPauseButton}>
+            <CustomTouchableOpacity style={styles.playPauseButton}>
               <PauseIcon width={100} height={100} />
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
 
-            <TouchableOpacity style={styles.skipButton}>
+            <CustomTouchableOpacity style={styles.skipButton}>
               <ForwardIcon width={40} height={40} color="#A0A3B1" />
-            </TouchableOpacity>
+            </CustomTouchableOpacity>
           </View>
 
           {/* Scrubber */}

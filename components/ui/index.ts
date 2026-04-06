@@ -9,4 +9,4 @@ export * from "./LogoGroup";
 export * from "./PasswordInput";
 export * from "./ScreenLayout";
 export * from "./TopicCard";
-
+export * from "./CustomTouchableOpacity";

@@ -5,7 +5,7 @@ import KidsIcon from "@/assets/icons/kids.svg";
 import SleepIcon from "@/assets/icons/sleep.svg";
 import OceanMoon from "@/assets/images/ocean-moon.jpg";
 import BgImage from "@/assets/images/sleep-stories-bg.svg";
-import { BaseButton, BaseText } from "@/components";
+import { BaseButton, BaseText, CustomTouchableOpacity } from "@/components";
 import { SleepCard } from "@/components/sleep";
 import { ScreenLayout } from "@/components/ui/ScreenLayout";
 import { Colors, SLEEP_STORIES } from "@/constants";
@@ -13,7 +13,7 @@ import { useAppContext } from "@/context/AppContext";
 import { Image } from "expo-image";
 import { Redirect, router } from "expo-router";
 import { useState } from "react";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function Sleep() {
   const { hasSeenSleepWelcome } = useAppContext();
@@ -56,7 +56,7 @@ export default function Sleep() {
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
-              <TouchableOpacity
+              <CustomTouchableOpacity
                 key={cat.id}
                 style={styles.categoryWrap}
                 onPress={() => setActiveCategory(cat.id)}
@@ -78,7 +78,7 @@ export default function Sleep() {
                 >
                   {cat.label}
                 </BaseText>
-              </TouchableOpacity>
+              </CustomTouchableOpacity>
             );
           })}
         </ScrollView>
@@ -118,11 +118,11 @@ export default function Sleep() {
           <BaseText variant="bold" style={styles.title}>
             Sleep Stories
           </BaseText>
-          <TouchableOpacity onPress={() => router.push("/sleep/sleep-stories")}>
+          <CustomTouchableOpacity onPress={() => router.push("/sleep/sleep-stories")}>
             <BaseText variant="regular" style={styles.description}>
               See all
             </BaseText>
-          </TouchableOpacity>
+          </CustomTouchableOpacity>
         </View>
 
         {/* TODO */}

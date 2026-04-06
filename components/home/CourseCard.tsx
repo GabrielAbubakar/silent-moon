@@ -1,8 +1,9 @@
-import { BaseText } from "@/components/ui";
 import { Colors } from "@/constants";
 import { router } from "expo-router";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SvgProps } from "react-native-svg";
+import { BaseText } from "../ui/BaseText";
+import { CustomTouchableOpacity } from "../ui/CustomTouchableOpacity";
 
 export interface Course {
   title: string;
@@ -63,7 +64,7 @@ export function CourseCard({ course }: CourseCardProps) {
         >
           {course.duration}
         </BaseText>
-        <TouchableOpacity
+        <CustomTouchableOpacity
           style={[
             styles.startBtn,
             {
@@ -86,7 +87,7 @@ export function CourseCard({ course }: CourseCardProps) {
           >
             START
           </BaseText>
-        </TouchableOpacity>
+        </CustomTouchableOpacity>
       </View>
     </View>
   );

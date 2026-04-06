@@ -5,10 +5,10 @@ import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import {
   StyleProp,
   StyleSheet,
-  TouchableOpacity,
   View,
   ViewStyle,
 } from "react-native";
+import { CustomTouchableOpacity } from "./CustomTouchableOpacity";
 
 interface ControlledCheckboxProps<T extends FieldValues> {
   name: Path<T>;
@@ -29,13 +29,13 @@ export function ControlledCheckbox<T extends FieldValues>({
       name={name}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <View style={containerStyle}>
-          <TouchableOpacity
+          <CustomTouchableOpacity
             activeOpacity={0.7}
             style={styles.checkboxContainer}
             onPress={() => onChange(!value)}
           >
             <View style={styles.textContainer}>{children}</View>
-            <TouchableOpacity
+            <CustomTouchableOpacity
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
               onPress={() => onChange(!value)}
             >
@@ -50,8 +50,8 @@ export function ControlledCheckbox<T extends FieldValues>({
                       : Colors.light.textSecondary
                 }
               />
-            </TouchableOpacity>
-          </TouchableOpacity>
+            </CustomTouchableOpacity>
+          </CustomTouchableOpacity>
           {/* {error && (
             <BaseText size="sm" style={styles.errorText}>
               {error.message}
