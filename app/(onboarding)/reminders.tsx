@@ -1,9 +1,14 @@
-import { BaseButton, BaseText, CustomTimePicker, CustomTouchableOpacity } from "@/components";
+import {
+  BaseButton,
+  BaseText,
+  CustomTimePicker,
+  CustomTouchableOpacity,
+} from "@/components";
 import { ScreenLayout } from "@/components/ui/ScreenLayout";
 import { Colors } from "@/constants";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 const days = [
   { label: "SU", value: "sun" },
@@ -92,7 +97,6 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 50,
     flex: 1,
-    justifyContent: "space-between",
   },
   title: {
     color: "#16171D",
@@ -106,8 +110,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2F3F7",
     borderRadius: 20,
     overflow: "hidden",
-    marginVertical: 30,
-    padding: Platform.OS === "ios" ? 0 : 10,
+    marginVertical: 25,
   },
   daysContainer: {
     flexDirection: "row",

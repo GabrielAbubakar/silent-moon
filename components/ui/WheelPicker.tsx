@@ -8,6 +8,7 @@ import {
   View,
 } from "react-native";
 import { BaseText } from "./BaseText";
+import { CustomTouchableOpacity } from "./CustomTouchableOpacity";
 
 export const ITEM_HEIGHT = 40;
 export const VISIBLE_ITEMS = 5;
@@ -42,18 +43,22 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
   );
 
   const flatListRef = useRef<FlatList>(null);
+  const isInternalChange = useRef(false);
 
   useEffect(() => {
     if (initialIndex !== -1) {
-      scrollY.setValue(initialIndex * ITEM_HEIGHT);
-      // Small delay to ensure layout
-      const timer = setTimeout(() => {
-        flatListRef.current?.scrollToOffset({
-          offset: initialIndex * ITEM_HEIGHT,
-          animated: false,
-        });
-      }, 0);
-      return () => clearTimeout(timer);
+      if (!isInternalChange.current) {
+        scrollY.setValue(initialIndex * ITEM_HEIGHT);
+        // Small delay to ensure layout
+        const timer = setTimeout(() => {
+          flatListRef.current?.scrollToOffset({
+            offset: initialIndex * ITEM_HEIGHT,
+            animated: false,
+          });
+        }, 0);
+        return () => clearTimeout(timer);
+      }
+      isInternalChange.current = false;
     }
   }, [initialIndex, scrollY]);
 
@@ -63,6 +68,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
     const y = event.nativeEvent.contentOffset.y;
     const index = Math.round(y / ITEM_HEIGHT);
     if (data[index]) {
+      isInternalChange.current = true;
       onValueChange(data[index]);
     }
   };
@@ -103,16 +109,34 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
       extrapolate: "clamp",
     });
 
+    const handlePress = () => {
+      const realIndex = index - Math.floor(VISIBLE_ITEMS / 2);
+      if (data[realIndex] !== undefined) {
+        isInternalChange.current = true;
+        flatListRef.current?.scrollToOffset({
+          offset: realIndex * ITEM_HEIGHT,
+          animated: true,
+        });
+        onValueChange(data[realIndex]);
+      }
+    };
+
     return (
       <View style={[styles.item, { height: ITEM_HEIGHT }]}>
-        <Animated.View
-          style={{
-            transform: [{ scale }, { rotateX }],
-            opacity,
-          }}
+        <CustomTouchableOpacity
+          onPress={handlePress}
+          disabled={!item}
+          activeOpacity={0.6}
         >
-          <BaseText style={styles.itemText}>{item}</BaseText>
-        </Animated.View>
+          <Animated.View
+            style={{
+              transform: [{ scale }, { rotateX }],
+              opacity,
+            }}
+          >
+            <BaseText style={styles.itemText}>{item}</BaseText>
+          </Animated.View>
+        </CustomTouchableOpacity>
       </View>
     );
   };
